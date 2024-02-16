@@ -6,7 +6,7 @@ import type {
 export default abstract class BaseApi {
   constructor (
     protected interceptors: unknown,
-    protected options: ApiOptionsType,
+    protected options: ApiOptionsType
   ) {};
 
   public abstract get<M> (endpoint: string, options: ApiOptionsType): PromiseApiResponseType<M>;

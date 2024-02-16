@@ -1,11 +1,9 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-import eslintPlugin from 'vite-plugin-eslint'
+import eslintPlugin from 'vite-plugin-eslint';
 
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: [
-    '@/assets/styles/index.sass',
-  ],
+  css: ['@/assets/styles/index.sass'],
   modules: [
     '@nuxtjs/i18n',
     '@pinia/nuxt',
@@ -30,20 +28,16 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
   },
   vite: {
-    plugins: [
-      eslintPlugin(),
-    ],
+    plugins: [eslintPlugin()],
     css: {
       preprocessorOptions: {
         sass: {
-          additionalData: `@use "@/assets/styles/imports/_index.sass" as *\n`,
+          additionalData: '@use "@/assets/styles/imports/_index.sass" as *\n',
         },
       },
     },
   },
-  devServer: {
-    port: 3000,
-  },
+  devServer: { port: 3000 },
   runtimeConfig: {
     public: {
       VITE_BASE_API_URL: process.env.VITE_BASE_API_URL,
@@ -74,4 +68,4 @@ export default defineNuxtConfig({
       ],
     },
   },
-})
+});

@@ -6,7 +6,7 @@ import MovieService from '@/services/movie/movie.service';
 const movieService: MovieService = new MovieService(
   new FetchApi(
     ClientInterceptors,
-    { baseURL: urls.movie },
+    { baseURL: urls.movie }
   )
 );
 
