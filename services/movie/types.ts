@@ -1,4 +1,3 @@
-import type { FetchResponse } from 'ofetch';
 import type { ResponseListType } from '@/types';
 
 export type MovieDetailsResponseType = {

@@ -1,5 +1,5 @@
-import BaseApi from '@/api/base/base.api';
 import { $fetch } from 'ofetch';
+import BaseApi from '@/api/base/base.api';
 import type {
   $Fetch,
   ApiOptionsType,
@@ -12,7 +12,7 @@ export default class FetchApi extends BaseApi {
 
   constructor (
     protected interceptors: InterceptorsInterface,
-    protected options: ApiOptionsType = {},
+    protected options: ApiOptionsType = {}
   ) {
     super(interceptors, options);
     this.fetchApi = $fetch.create({
@@ -21,7 +21,7 @@ export default class FetchApi extends BaseApi {
     });
   };
 
-  public get <M>(endpoint: string = '', options: ApiOptionsType = {}): PromiseApiResponseType<M> {
+  public get<M> (endpoint: string = '', options: ApiOptionsType = {}): PromiseApiResponseType<M> {
     return this.fetchApi.raw(endpoint, { method: 'GET', ...options });
   };
 };

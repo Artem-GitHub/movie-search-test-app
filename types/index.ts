@@ -5,11 +5,10 @@ import type {
   ApiResponseType,
   PromiseApiResponseType,
   ApiSearchParametersType,
-  InterceptorsInterface
+  InterceptorsInterface,
 } from '@/api/types';
 
 import type {
-  ServicesInterface,
   UrlsType,
   ResponseListType,
 } from '@/services/types';
@@ -28,7 +27,6 @@ export type {
   PromiseApiResponseType,
   ApiSearchParametersType,
   InterceptorsInterface,
-  ServicesInterface,
   UrlsType,
   ResponseListType,
   MovieDetailsResponseType,

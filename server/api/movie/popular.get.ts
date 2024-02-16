@@ -4,11 +4,7 @@ import type {
 } from '@/types';
 import { movieServerService } from '@/server/services';
 
-export default defineEventHandler(async (event): Promise<MoviePopularResponseType | undefined> => {
-  try {
-    const response: ApiResponseType<MoviePopularResponseType> = await movieServerService.getMoviePopular();
-    return response._data;
-  } catch (error) {
-    throw error;
-  }
+export default defineEventHandler(async (): Promise<MoviePopularResponseType | undefined> => {
+  const response: ApiResponseType<MoviePopularResponseType> = await movieServerService.getMoviePopular();
+  return response._data;
 });

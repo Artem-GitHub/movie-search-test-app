@@ -6,7 +6,9 @@ import type {
 const config = useRuntimeConfig();
 const secretApiToken = config.VITE_SECRET_API_TOKEN;
 
-if (!secretApiToken) throw new Error('VITE_SECRET_API_TOKEN not found in env file');
+if (!secretApiToken) {
+  throw new Error('VITE_SECRET_API_TOKEN not found in env file');
+}
 
 const ServerInterceptors: InterceptorsInterface = {
   onRequest ({ options }: InterceptorOptionsType) {

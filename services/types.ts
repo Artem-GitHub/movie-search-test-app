@@ -1,11 +1,5 @@
-import BaseService from '@/services/base/base.service';
-
-export interface ServicesInterface {
-  [key: string]: BaseService;
-};
-
 export type UrlsType = {
-  [key: string]: string;
+  readonly [key: string]: string;
 };
 
 export type ResponseListType<M> = {
