@@ -1,7 +1,3 @@
-export type UrlsType = {
-  readonly [key: string]: string;
-};
-
 export type ResponseListType<M> = {
   page: number;
   results: [M];

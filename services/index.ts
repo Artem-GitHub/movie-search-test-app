@@ -1,13 +1,18 @@
-import FetchApi from '@/api/fetch.api';
+import { $fetch } from 'ofetch';
 import ClientInterceptors from '@/api/client.interceptors.api';
-import urls from '@/services/urls';
 import MovieService from '@/services/movie/movie.service';
 
-const movieService: MovieService = new MovieService(
-  new FetchApi(
-    ClientInterceptors,
-    { baseURL: urls.movie }
-  )
-);
+const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
+
+if (!baseApiUrl) {
+  throw new Error('VITE_BASE_API_URL not found in env file');
+}
+
+const clientFetch = $fetch.create({
+  baseURL: baseApiUrl,
+  ...ClientInterceptors,
+});
+
+const movieService: MovieService = new MovieService(clientFetch);
 
 export { movieService };

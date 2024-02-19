@@ -1,13 +1,19 @@
-import FetchApi from '@/api/fetch.api';
+import { $fetch } from 'ofetch';
 import ServerInterceptors from '@/api/server.interceptors.api';
-import urls from '@/server/services/urls';
 import MovieServerService from '@/server/services/movie/movie.service';
 
-const movieServerService: MovieServerService = new MovieServerService(
-  new FetchApi(
-    ServerInterceptors,
-    { baseURL: urls.movie }
-  )
-);
+const config = useRuntimeConfig();
+const externalApiUrl = config.public.VITE_EXTERNAL_API_URL;
+
+if (!externalApiUrl) {
+  throw new Error('VITE_EXTERNAL_API_URL not found in env file');
+}
+
+const serverFetch = $fetch.create({
+  baseURL: externalApiUrl,
+  ...ServerInterceptors,
+});
+
+const movieServerService: MovieServerService = new MovieServerService(serverFetch);
 
 export { movieServerService };
