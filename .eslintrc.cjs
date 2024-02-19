@@ -21,7 +21,6 @@ module.exports = {
         functions: 'never',
       },
     ],
-    'no-useless-constructor': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
     'vue/max-attributes-per-line': [
       'error',

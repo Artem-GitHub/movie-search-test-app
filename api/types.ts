@@ -2,14 +2,11 @@ import type {
   $Fetch,
   FetchContext,
   FetchOptions,
-  FetchResponse,
   SearchParameters,
 } from 'ofetch';
 
 type InterceptorOptionsType = FetchContext;
 type ApiOptionsType = FetchOptions;
-type ApiResponseType<M> = FetchResponse<M>;
-type PromiseApiResponseType<M> = Promise<ApiResponseType<M>>;
 type ApiSearchParametersType = SearchParameters;
 
 interface InterceptorsInterface {
@@ -19,12 +16,15 @@ interface InterceptorsInterface {
   onResponseError (options?: InterceptorOptionsType): void | Promise<void>;
 };
 
+interface ApiInterface {
+  get<M> (endpoint: string, options: ApiOptionsType): Promise<M>;
+}
+
 export type {
   $Fetch,
   InterceptorOptionsType,
   ApiOptionsType,
-  ApiResponseType,
-  PromiseApiResponseType,
   ApiSearchParametersType,
   InterceptorsInterface,
+  ApiInterface,
 };

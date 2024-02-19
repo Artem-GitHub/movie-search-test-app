@@ -2,16 +2,12 @@ import type {
   $Fetch,
   InterceptorOptionsType,
   ApiOptionsType,
-  ApiResponseType,
-  PromiseApiResponseType,
   ApiSearchParametersType,
   InterceptorsInterface,
+  ApiInterface,
 } from '@/api/types';
 
-import type {
-  UrlsType,
-  ResponseListType,
-} from '@/services/types';
+import type { ResponseListType } from '@/services/types';
 
 import type {
   MovieDetailsResponseType,
@@ -23,13 +19,11 @@ export type {
   $Fetch,
   InterceptorOptionsType,
   ApiOptionsType,
-  ApiResponseType,
-  PromiseApiResponseType,
   ApiSearchParametersType,
   InterceptorsInterface,
-  UrlsType,
   ResponseListType,
   MovieDetailsResponseType,
   MoviePopularResponseItemType,
   MoviePopularResponseType,
+  ApiInterface,
 };

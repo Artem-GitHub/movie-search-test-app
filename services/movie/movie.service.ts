@@ -1,12 +1,13 @@
-import BaseService from '@/services/base/base.service';
+import BaseApi from '@/api/base.api';
 import type {
-  PromiseApiResponseType,
   MoviePopularResponseType,
   ApiSearchParametersType,
 } from '@/types';
 
-export default class MovieService extends BaseService {
-  public getMoviePopular (query: ApiSearchParametersType = {}): PromiseApiResponseType<MoviePopularResponseType> {
-    return this.api.get<MoviePopularResponseType>('/popular', query);
+export default class MovieService extends BaseApi {
+  private resourseUrl = '/movie';
+
+  public getMoviePopular (query: ApiSearchParametersType = {}): Promise<MoviePopularResponseType> {
+    return this.get<MoviePopularResponseType>(this.resourseUrl + '/popular', query);
   };
 };

@@ -1,10 +1,6 @@
-import type {
-  ApiResponseType,
-  MoviePopularResponseType,
-} from '@/types';
 import { movieServerService } from '@/server/services';
+import type { MoviePopularResponseType } from '@/types';
 
 export default defineEventHandler(async (): Promise<MoviePopularResponseType | undefined> => {
-  const response: ApiResponseType<MoviePopularResponseType> = await movieServerService.getMoviePopular();
-  return response._data;
+  return await movieServerService.getMoviePopular();
 });
