@@ -5,9 +5,9 @@ import type {
 } from '@/types';
 
 export default class MovieService extends BaseApi {
-  private RESOURCE = '/movie';
+  private resourseUrl = '/movie';
 
   public getMoviePopular (query: ApiSearchParametersType = {}): Promise<MoviePopularResponseType> {
-    return this.get<MoviePopularResponseType>(this.RESOURCE + '/popular', query);
+    return this.get<MoviePopularResponseType>(this.resourseUrl + '/popular', query);
   };
 };
