@@ -11,3 +11,11 @@
       @content
   @else
     @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. " + "Available breakpoints are: #{map-keys($breakpoints)}."
+
+@mixin hover-adaptive()
+  @media (pointer: fine)
+    &:hover
+      @content
+  @media (pointer: coarse)
+    &:active
+      @content

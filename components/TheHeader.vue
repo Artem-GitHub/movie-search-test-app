@@ -85,7 +85,7 @@ const localePath = useLocalePath();
     column-gap: 2.4rem
 
   &__link
-    font-size: 1.6rem
+    font-size: 1.8rem
     font-weight: 600
     color: $primary-300
     transition: color 0.25s
@@ -109,15 +109,9 @@ const localePath = useLocalePath();
       color: $primary-300
       transition: color 0.25s
 
-    @media (pointer: fine)
-      &:hover
-        & .nuxt-icon
-          color: $primary-50
-
-    @media (pointer: coarse)
-      &:active
-        & .nuxt-icon
-          color: $primary-50
+    @include hover-adaptive()
+      & .nuxt-icon
+        color: $primary-50
 
   &__locales
     display: flex
@@ -134,15 +128,8 @@ const localePath = useLocalePath();
     border-radius: 0.8rem
     transition: background-color 0.25s, color 0.25s, border-color 0.25s
 
-    @media (pointer: fine)
-      &:hover
-        background-color: $primary-50
-        color: $primary-900
-        border-color: $primary-50
-
-    @media (pointer: coarse)
-      &:active
-        background-color: $primary-50
-        color: $primary-900
-        border-color: $primary-50
+    @include hover-adaptive()
+      background-color: $primary-50
+      color: $primary-900
+      border-color: $primary-50
 </style>
