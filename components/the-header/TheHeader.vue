@@ -1,5 +1,14 @@
 <script lang="ts" setup>
 const localePath = useLocalePath();
+const isShowMobileMenu = ref<boolean>(false);
+
+function toggleMobileMenu () {
+  isShowMobileMenu.value = !isShowMobileMenu.value;
+};
+
+function closeMobileMenu () {
+  isShowMobileMenu.value = false;
+};
 </script>
 
 <template>
@@ -8,6 +17,7 @@ const localePath = useLocalePath();
       <button
         class="header__menu-button"
         type="button"
+        @click="toggleMobileMenu"
       >
         <nuxt-icon name="menu" />
       </button>
@@ -62,6 +72,7 @@ const localePath = useLocalePath();
         <button
           class="header__search-button"
           type="button"
+          @click="closeMobileMenu"
         >
           <nuxt-icon name="search" />
         </button>
@@ -82,7 +93,12 @@ const localePath = useLocalePath();
       </div>
     </div>
 
-    <TheHeaderMobileMenu />
+    <transition name="mobile-menu">
+      <TheHeaderMobileMenu
+        v-if="isShowMobileMenu"
+        @on-menu-click="closeMobileMenu"
+      />
+    </transition>
   </header>
 </template>
 
@@ -191,4 +207,15 @@ const localePath = useLocalePath();
 
     @include media-breakpoint-down(sm)
       display: none
+
+.mobile-menu-enter-active,
+.mobile-menu-leave-active
+  transition: transform 0.25s ease
+  transform: translateY(-100%)
+.mobile-menu-enter-from,
+.mobile-menu-leave-to
+  transform: translateY(-100%)
+.mobile-menu-leave-from,
+.mobile-menu-enter-to
+  transform: translateY(0%)
 </style>

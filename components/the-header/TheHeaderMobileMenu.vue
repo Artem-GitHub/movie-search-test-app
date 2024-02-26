@@ -1,10 +1,15 @@
 <script lang="ts" setup>
 const localePath = useLocalePath();
+
+const emit = defineEmits<{(e: 'on-menu-click'): void}>();
 </script>
 
 <template>
   <div class="mobile-menu">
-    <nav class="mobile-menu__navigation">
+    <nav
+      class="mobile-menu__navigation"
+      @click="emit('on-menu-click')"
+    >
       <NuxtLink
         class="mobile-menu__link"
         :to="localePath('index')"
@@ -83,8 +88,6 @@ const localePath = useLocalePath();
   background-color: $primary-900
   position: absolute
   z-index: 1
-  top: 6rem
-  left: 0
 
   &__navigation
     display: flex
