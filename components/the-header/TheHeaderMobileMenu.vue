@@ -89,24 +89,28 @@ const emit = defineEmits<{(e: 'on-menu-click'): void}>();
   position: absolute
   z-index: 1
 
+  @include media-breakpoint-up(sm)
+    display: none
+
   &__navigation
     display: flex
     flex-direction: column
     flex: 1
-    row-gap: 1.6rem
     border-bottom: solid 1px $primary-300
-    padding: 2.4rem
+    padding-top: 2.4rem
 
   &__link
-    font-size: 2.4rem
-    font-weight: 600
-    color: $primary-300
-    transition: color 0.25s
+    display: flex
+    align-items: center
+    height: 5.2rem
+    font-size: 2.2rem
+    color: $primary-50
+    padding-left: 2.4rem
     cursor: pointer
 
     &:hover,
     &.router-link-active
-      color: $primary-50
+      background-color: $primary-800
 
   &__actions
     padding: 2.4rem 2.4rem 6.8rem
