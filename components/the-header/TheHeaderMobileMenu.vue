@@ -1,5 +1,7 @@
 <script lang="ts" setup>
+const { locales } = useI18n();
 const localePath = useLocalePath();
+const switchLocalePath = useSwitchLocalePath();
 
 const emit = defineEmits<{(e: 'on-menu-click'): void}>();
 </script>
@@ -49,32 +51,20 @@ const emit = defineEmits<{(e: 'on-menu-click'): void}>();
           type="button"
         >
           <nuxt-icon name="login" />
-          <span>{{ $t('Sign in') }}</span>
+          <span>{{ $t('signIn') }}</span>
         </button>
       </div>
 
-      <div class="mobile-menu__locales">
-        <button
-          class="mobile-menu__locales-button mobile-menu__locales-button--active"
-          type="button"
+      <nav class="mobile-menu__locales">
+        <NuxtLink
+          v-for="locale in locales"
+          :key="locale.code"
+          class="mobile-menu__locales-link"
+          :to="switchLocalePath(locale.code)"
         >
-          En
-        </button>
-
-        <button
-          class="mobile-menu__locales-button"
-          type="button"
-        >
-          UK
-        </button>
-
-        <button
-          class="mobile-menu__locales-button"
-          type="button"
-        >
-          RU
-        </button>
-      </div>
+          {{ locale.code }}
+        </NuxtLink>
+      </nav>
     </div>
   </div>
 </template>
@@ -143,28 +133,24 @@ const emit = defineEmits<{(e: 'on-menu-click'): void}>();
     display: flex
     column-gap: 1.6rem
 
-  &__locales-button
-    display: flex
-    justify-content: center
-    align-items: center
-    width: 3.6rem
-    height: 3.6rem
-    background-color: transparent
-    font-size: 1.4rem
-    font-weight: 600
-    text-transform: uppercase
-    color: $primary-300
-    border: 2px solid $primary-300
-    border-radius: 0.8rem
-    transition: background-color 0.25s, color 0.25s, border-color 0.25s
+    &-link
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 3.6rem
+      height: 3.6rem
+      background-color: transparent
+      font-size: 1.4rem
+      font-weight: 600
+      text-transform: uppercase
+      color: $primary-300
+      border: 2px solid $primary-300
+      border-radius: 0.8rem
+      transition: background-color 0.25s, color 0.25s, border-color 0.25s
 
-    @include hover-adaptive()
-      background-color: $primary-50
-      color: $primary-900
-      border-color: $primary-50
-
-    &--active
-      background-color: $primary-50
-      color: $primary-900
-      border-color: $primary-50
+      &:hover,
+      &.router-link-active
+        background-color: $primary-50
+        color: $primary-900
+        border-color: $primary-50
 </style>
