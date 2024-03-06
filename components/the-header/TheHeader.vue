@@ -2,11 +2,11 @@
 const localePath = useLocalePath();
 const isShowMobileMenu = ref<boolean>(false);
 
-function toggleMobileMenu () {
+function toggleMobileMenu (): void {
   isShowMobileMenu.value = !isShowMobileMenu.value;
 };
 
-function closeMobileMenu () {
+function closeMobileMenu (): void {
   isShowMobileMenu.value = false;
 };
 </script>
@@ -84,12 +84,7 @@ function closeMobileMenu () {
           <nuxt-icon name="login" />
         </button>
 
-        <button
-          class="header__locales-button"
-          type="button"
-        >
-          En
-        </button>
+        <TheHeaderLocales />
       </div>
     </div>
 
@@ -111,9 +106,9 @@ function closeMobileMenu () {
     align-items: center
     height: 6rem
     background-color: $primary-900
-    -webkit-box-shadow: 0px 2px 10px 0px hex-with-alpha($black, 0.25)
-    -moz-box-shadow: 0px 2px 10px 0px hex-with-alpha($black, 0.25)
-    box-shadow: 0px 2px 10px 0px hex-with-alpha($black, 0.25)
+    -webkit-box-shadow: 0px 2px 10px 0px hex-with-alpha($primary-900, 0.5)
+    -moz-box-shadow: 0px 2px 10px 0px hex-with-alpha($primary-900, 0.5)
+    box-shadow: 0px 2px 10px 0px hex-with-alpha($primary-900, 0.5)
     column-gap: 6rem
     padding: 0 3.2rem
     position: relative
@@ -182,29 +177,6 @@ function closeMobileMenu () {
       display: initial
 
   &__login-button
-    @include media-breakpoint-down(sm)
-      display: none
-
-  &__locales-button
-    display: flex
-    justify-content: center
-    align-items: center
-    width: 3.2rem
-    height: 3.2rem
-    background-color: transparent
-    font-size: 1.4rem
-    font-weight: 600
-    text-transform: uppercase
-    color: $primary-300
-    border: 2px solid $primary-300
-    border-radius: 0.8rem
-    transition: background-color 0.25s, color 0.25s, border-color 0.25s
-
-    @include hover-adaptive()
-      background-color: $primary-50
-      color: $primary-900
-      border-color: $primary-50
-
     @include media-breakpoint-down(sm)
       display: none
 

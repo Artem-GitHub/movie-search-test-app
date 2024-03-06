@@ -58,11 +58,11 @@ const emit = defineEmits<{(e: 'on-menu-click'): void}>();
       <nav class="mobile-menu__locales">
         <NuxtLink
           v-for="locale in locales"
-          :key="locale.code"
+          :key="typeof locale === 'string' ? locale : locale.code"
           class="mobile-menu__locales-link"
-          :to="switchLocalePath(locale.code)"
+          :to="switchLocalePath(typeof locale === 'string' ? locale : locale.code)"
         >
-          {{ locale.code }}
+          {{ typeof locale === 'string' ? locale : locale.code }}
         </NuxtLink>
       </nav>
     </div>
