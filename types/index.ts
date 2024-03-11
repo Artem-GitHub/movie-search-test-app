@@ -15,6 +15,8 @@ import type {
   MoviePopularResponseType,
 } from '@/services/movie/types';
 
+import type { LinksListType } from '@/components/the-header/types';
+
 export type {
   $Fetch,
   InterceptorOptionsType,
@@ -26,4 +28,5 @@ export type {
   MoviePopularResponseItemType,
   MoviePopularResponseType,
   ApiInterface,
+  LinksListType,
 };

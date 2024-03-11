@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+import type { LinksListType } from '@/types';
+
 const { locales } = useI18n();
-const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
 
+const props = defineProps<{ navigationLinks: LinksListType }>();
 const emit = defineEmits<{(e: 'on-menu-click'): void}>();
 </script>
 
@@ -13,41 +15,19 @@ const emit = defineEmits<{(e: 'on-menu-click'): void}>();
       @click="emit('on-menu-click')"
     >
       <NuxtLink
-        class="mobile-menu__link"
-        :to="localePath('index')"
+        v-for="link in props.navigationLinks"
+        :key="link.link"
+        class="mobile-menu__link font-body-22"
+        :to="link.link"
       >
-        {{ $t('home') }}
-      </NuxtLink>
-
-      <NuxtLink
-        class="mobile-menu__link"
-        no-prefetch
-        :to="localePath('movies')"
-      >
-        {{ $t('movies') }}
-      </NuxtLink>
-
-      <NuxtLink
-        class="mobile-menu__link"
-        no-prefetch
-        :to="localePath('series')"
-      >
-        {{ $t('series') }}
-      </NuxtLink>
-
-      <NuxtLink
-        class="mobile-menu__link"
-        no-prefetch
-        :to="localePath('persons')"
-      >
-        {{ $t('persons') }}
+        {{ link.title }}
       </NuxtLink>
     </nav>
 
     <div class="mobile-menu__actions">
       <div class="mobile-menu__login">
         <button
-          class="mobile-menu__login-button"
+          class="mobile-menu__login-button font-body-20"
           type="button"
         >
           <nuxt-icon name="login" />
@@ -59,7 +39,7 @@ const emit = defineEmits<{(e: 'on-menu-click'): void}>();
         <NuxtLink
           v-for="locale in locales"
           :key="typeof locale === 'string' ? locale : locale.code"
-          class="mobile-menu__locales-link"
+          class="mobile-menu__locales-link font-body-14 font-weight-600"
           :to="switchLocalePath(typeof locale === 'string' ? locale : locale.code)"
         >
           {{ typeof locale === 'string' ? locale : locale.code }}
@@ -74,7 +54,7 @@ const emit = defineEmits<{(e: 'on-menu-click'): void}>();
   display: flex
   flex-direction: column
   width: 100%
-  min-height: calc(100vh - 6rem)
+  min-height: calc(100vh - $header-height)
   background-color: $primary-900
   position: absolute
   z-index: 1
@@ -93,7 +73,6 @@ const emit = defineEmits<{(e: 'on-menu-click'): void}>();
     display: flex
     align-items: center
     height: 5.2rem
-    font-size: 2.2rem
     color: $primary-50
     padding-left: 2.4rem
     cursor: pointer
@@ -112,7 +91,6 @@ const emit = defineEmits<{(e: 'on-menu-click'): void}>();
 
   &__login-button
     background-color: transparent
-    font-size:  2rem
     color: $primary-300
     transition: color 0.25s
 
@@ -140,8 +118,6 @@ const emit = defineEmits<{(e: 'on-menu-click'): void}>();
       width: 3.6rem
       height: 3.6rem
       background-color: transparent
-      font-size: 1.4rem
-      font-weight: 600
       text-transform: uppercase
       color: $primary-300
       border: 2px solid $primary-300

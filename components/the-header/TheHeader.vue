@@ -1,6 +1,28 @@
 <script lang="ts" setup>
+import type { LinksListType } from '@/types';
+
+const { t } = useI18n();
 const localePath = useLocalePath();
 const isShowMobileMenu = ref<boolean>(false);
+
+const navigationLinks = computed<LinksListType>(() => [
+  {
+    title: t('home'),
+    link: localePath('index'),
+  },
+  {
+    title: t('movies'),
+    link: localePath('movies'),
+  },
+  {
+    title: t('series'),
+    link: localePath('series'),
+  },
+  {
+    title: t('persons'),
+    link: localePath('persons'),
+  },
+]);
 
 function toggleMobileMenu (): void {
   isShowMobileMenu.value = !isShowMobileMenu.value;
@@ -14,13 +36,11 @@ function closeMobileMenu (): void {
 <template>
   <header class="header">
     <div class="header__container">
-      <button
+      <BaseIconButton
         class="header__menu-button"
-        type="button"
+        :icon-name="'menu'"
         @click="toggleMobileMenu"
-      >
-        <nuxt-icon name="menu" />
-      </button>
+      />
 
       <NuxtLink
         class="header__logo"
@@ -37,52 +57,25 @@ function closeMobileMenu (): void {
 
       <nav class="header__navigation">
         <NuxtLink
-          class="header__link"
-          :to="localePath('index')"
+          v-for="link in navigationLinks"
+          :key="link.link"
+          class="header__link font-body-18 font-weight-600"
+          :to="link.link"
         >
-          {{ $t('home') }}
-        </NuxtLink>
-
-        <NuxtLink
-          class="header__link"
-          no-prefetch
-          :to="localePath('movies')"
-        >
-          {{ $t('movies') }}
-        </NuxtLink>
-
-        <NuxtLink
-          class="header__link"
-          no-prefetch
-          :to="localePath('series')"
-        >
-          {{ $t('series') }}
-        </NuxtLink>
-
-        <NuxtLink
-          class="header__link"
-          no-prefetch
-          :to="localePath('persons')"
-        >
-          {{ $t('persons') }}
+          {{ link.title }}
         </NuxtLink>
       </nav>
 
       <div class="header__actions">
-        <button
-          class="header__search-button"
-          type="button"
+        <BaseIconButton
+          :icon-name="'search'"
           @click="closeMobileMenu"
-        >
-          <nuxt-icon name="search" />
-        </button>
+        />
 
-        <button
+        <BaseIconButton
           class="header__login-button"
-          type="button"
-        >
-          <nuxt-icon name="login" />
-        </button>
+          :icon-name="'login'"
+        />
 
         <TheHeaderLocales />
       </div>
@@ -91,6 +84,7 @@ function closeMobileMenu (): void {
     <transition name="mobile-menu">
       <TheHeaderMobileMenu
         v-if="isShowMobileMenu"
+        :navigation-links="navigationLinks"
         @on-menu-click="closeMobileMenu"
       />
     </transition>
@@ -104,7 +98,7 @@ function closeMobileMenu (): void {
   &__container
     display: flex
     align-items: center
-    height: 6rem
+    height: $header-height
     background-color: $primary-900
     -webkit-box-shadow: 0px 2px 10px 0px hex-with-alpha($primary-900, 0.5)
     -moz-box-shadow: 0px 2px 10px 0px hex-with-alpha($primary-900, 0.5)
@@ -132,7 +126,6 @@ function closeMobileMenu (): void {
 
   &__navigation
     flex: 1
-    display: none
     display: flex
     column-gap: 2.4rem
 
@@ -140,8 +133,6 @@ function closeMobileMenu (): void {
       display: none
 
   &__link
-    font-size: 1.8rem
-    font-weight: 600
     color: $primary-300
     transition: color 0.25s
     cursor: pointer
@@ -153,22 +144,7 @@ function closeMobileMenu (): void {
   &__actions
     display: flex
     align-items: center
-    column-gap: 2.4rem
-
-  &__login-button,
-  &__search-button,
-  &__menu-button
-    background-color: transparent
-
-    & .nuxt-icon
-      width: 2.4rem
-      height: 2.4rem
-      color: $primary-300
-      transition: color 0.25s
-
-    @include hover-adaptive()
-      & .nuxt-icon
-        color: $primary-50
+    column-gap: 0.8rem
 
   &__menu-button
     display: none

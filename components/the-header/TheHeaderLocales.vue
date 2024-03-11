@@ -25,7 +25,7 @@ function closeLocalesPopup (): void {
 <template>
   <div class="locales">
     <button
-      class="locales__button"
+      class="locales__button font-body-14 font-weight-600"
       type="button"
       @click.stop="toggleLocalesPopup"
     >
@@ -42,7 +42,7 @@ function closeLocalesPopup (): void {
           <NuxtLink
             v-for="availableLocale in availableLocales"
             :key="typeof availableLocale === 'string' ? availableLocale : availableLocale.code"
-            class="locales__link"
+            class="locales__link font-body-14 font-weight-600"
             :to="switchLocalePath(typeof availableLocale === 'string' ? availableLocale : availableLocale.code)"
           >
             {{ typeof availableLocale === 'string' ? availableLocale : availableLocale.code }}
@@ -67,8 +67,6 @@ function closeLocalesPopup (): void {
     width: 3.2rem
     height: 3.2rem
     background-color: transparent
-    font-size: 1.4rem
-    font-weight: 600
     text-transform: uppercase
     color: $primary-300
     border-radius: 0.8rem
@@ -81,6 +79,7 @@ function closeLocalesPopup (): void {
 
   &__button
     border: 2px solid $primary-300
+    margin-left: 0.8rem
 
   &__popup
     background-color: $primary-900
@@ -91,7 +90,7 @@ function closeLocalesPopup (): void {
     padding: 0.4rem
     position: absolute
     top: 4.8rem
-    left: -0.4rem
+    left: 0.4rem
 
   &__navigation
     display: flex
