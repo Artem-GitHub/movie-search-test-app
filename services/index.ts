@@ -1,6 +1,7 @@
 import { $fetch } from 'ofetch';
 import ClientInterceptors from '@/api/client.interceptors.api';
 import MovieService from '@/services/movie/movie.service';
+import TrendingService from '@/services/trending/trending.service';
 
 const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
@@ -14,5 +15,9 @@ const clientFetch = $fetch.create({
 });
 
 const movieService: MovieService = new MovieService(clientFetch);
+const trendingService: TrendingService = new TrendingService(clientFetch);
 
-export { movieService };
+export {
+  movieService,
+  trendingService,
+};

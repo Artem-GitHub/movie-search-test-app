@@ -1,5 +1,13 @@
-import { movieService } from '@/services';
+import {
+  movieService,
+  trendingService,
+} from '@/services';
 
 export default defineNuxtPlugin(() => {
-  return { provide: { movieService } };
+  return {
+    provide: {
+      movieService,
+      trendingService,
+    },
+  };
 });

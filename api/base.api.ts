@@ -11,7 +11,7 @@ export default class BaseApi implements ApiInterface {
     this.fetchApi = fetchApi;
   };
 
-  public get<M> (endpoint: string = '', options: ApiOptionsType = {}): Promise<M> {
-    return this.fetchApi(endpoint, { method: 'GET', ...options });
+  public get<M> (url: string = '', options: ApiOptionsType = {}): Promise<M> {
+    return this.fetchApi(url, { method: 'GET', ...options });
   };
 };
