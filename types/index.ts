@@ -9,6 +9,8 @@ import type {
 
 import type { ResponseListType } from '@/services/types';
 
+import type { ConfigurationDetailsResponseType } from '@/services/configuration/types';
+
 import type {
   MovieDetailsResponseType,
   MoviePopularResponseItemType,
@@ -34,6 +36,7 @@ export type {
   InterceptorsInterface,
   ApiInterface,
   ResponseListType,
+  ConfigurationDetailsResponseType,
   MovieDetailsResponseType,
   MoviePopularResponseItemType,
   MoviePopularResponseType,

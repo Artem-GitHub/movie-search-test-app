@@ -1,5 +1,6 @@
 import { $fetch } from 'ofetch';
 import ClientInterceptors from '@/api/client.interceptors.api';
+import ConfigurationService from '@/services/configuration/configuration.service';
 import MovieService from '@/services/movie/movie.service';
 import TrendingService from '@/services/trending/trending.service';
 
@@ -14,10 +15,12 @@ const clientFetch = $fetch.create({
   ...ClientInterceptors,
 });
 
+const configurationService: ConfigurationService = new ConfigurationService(clientFetch);
 const movieService: MovieService = new MovieService(clientFetch);
 const trendingService: TrendingService = new TrendingService(clientFetch);
 
 export {
+  configurationService,
   movieService,
   trendingService,
 };

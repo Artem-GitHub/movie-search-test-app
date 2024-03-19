@@ -1,4 +1,5 @@
 import {
+  configurationService,
   movieService,
   trendingService,
 } from '@/services';
@@ -6,6 +7,7 @@ import {
 export default defineNuxtPlugin(() => {
   return {
     provide: {
+      configurationService,
       movieService,
       trendingService,
     },
