@@ -6,37 +6,24 @@ import type {
   TrendingMovieResponseType,
   TrendingSeriesResponseType,
   TrendingPersonResponseType,
-  ApiSearchParametersType,
 } from '@/types';
 
 export default class TrendingService extends BaseApi {
   private resourseUrl = '/trending';
 
-  public getTrendingAll (
-    period: TrendingPeriodEnum = TrendingPeriodEnum.day,
-    query: ApiSearchParametersType = {}
-  ): Promise<TrendingAllResponseType> {
-    return this.get<TrendingAllResponseType>(this.resourseUrl + `/all/${period}`, { query });
+  public getAll (period: TrendingPeriodEnum = TrendingPeriodEnum.day): Promise<TrendingAllResponseType> {
+    return this.get<TrendingAllResponseType>(this.resourseUrl + `/all/${period}`);
   };
 
-  public getTrendingMovie (
-    period: TrendingPeriodEnum = TrendingPeriodEnum.day,
-    query: ApiSearchParametersType = {}
-  ): Promise<TrendingMovieResponseType> {
-    return this.get<TrendingMovieResponseType>(this.resourseUrl + `/movie/${period}`, { query });
+  public getMovie (period: TrendingPeriodEnum = TrendingPeriodEnum.day): Promise<TrendingMovieResponseType> {
+    return this.get<TrendingMovieResponseType>(this.resourseUrl + `/movie/${period}`);
   };
 
-  public getTrendingSeries (
-    period: TrendingPeriodEnum = TrendingPeriodEnum.day,
-    query: ApiSearchParametersType = {}
-  ): Promise<TrendingSeriesResponseType> {
-    return this.get<TrendingSeriesResponseType>(this.resourseUrl + `/tv/${period}`, { query });
+  public getSeries (period: TrendingPeriodEnum = TrendingPeriodEnum.day): Promise<TrendingSeriesResponseType> {
+    return this.get<TrendingSeriesResponseType>(this.resourseUrl + `/tv/${period}`);
   };
 
-  public getTrendingPerson (
-    period: TrendingPeriodEnum = TrendingPeriodEnum.day,
-    query: ApiSearchParametersType = {}
-  ): Promise<TrendingPersonResponseType> {
-    return this.get<TrendingPersonResponseType>(this.resourseUrl + `/person/${period}`, { query });
+  public getPerson (period: TrendingPeriodEnum = TrendingPeriodEnum.day): Promise<TrendingPersonResponseType> {
+    return this.get<TrendingPersonResponseType>(this.resourseUrl + `/person/${period}`);
   };
 };
