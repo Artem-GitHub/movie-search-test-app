@@ -49,10 +49,11 @@ export type TrendingPersonResponseItemType = {
   known_for: Array<TrendingMovieResponseItemType>;
 };
 
+export type TrendingAllResponseType = ResponseListType<
+  TrendingMovieResponseItemType
+  & TrendingSeriesResponseItemType
+  & TrendingPersonResponseItemType
+>;
 export type TrendingMovieResponseType = ResponseListType<TrendingMovieResponseItemType>;
 export type TrendingSeriesResponseType = ResponseListType<TrendingSeriesResponseItemType>;
 export type TrendingPersonResponseType = ResponseListType<TrendingPersonResponseItemType>;
-export type TrendingAllResponseType =
-  TrendingMovieResponseType
-  | TrendingSeriesResponseType
-  | TrendingPersonResponseType;
