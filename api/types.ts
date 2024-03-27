@@ -17,7 +17,7 @@ interface InterceptorsInterface {
 };
 
 interface ApiInterface {
-  get<M> (endpoint: string, options: ApiOptionsType): Promise<M>;
+  get<M> (url: string, options: ApiOptionsType): Promise<M>;
 }
 
 export type {
